@@ -148,11 +148,23 @@ Trivia Questions:
     D. Bernadette
     (Answer) C
 
+Pseudocode
+
+Upon loading the website, the user will see the start button to begin the game.
+
+Upon clicking on 'start', the first question will load.
+
+each answer is stored and a count is kept. of the 20 or so questions cycled thru, the user is then told how many they got correct.
+
+
+the user can now start again.
+
 
 //Gold Version
-
+Gold version will have a fully functional trivia game that loads a giff depending on wether the user answered correctly or not. There would be a few giffs for each so it won't appear repetitive. There would be additional animation when questions load and answers are selected.
 
 //Silver Version
+Silver version would have a fully functional trivia game that stores the users running scores.
 
 
 //Bronze Version

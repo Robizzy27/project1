@@ -1,171 +1,55 @@
-(function() {
-  var questions = [{
-    question: "What change sets Sheldon off the moment that he enters the apartment after returning from his 'life on the rails'?",
-    choices: ["Penny's new haircut", "Raj's new girlfriend being there", "The furniture has been rearranged", "Bernadette sitting in his spot"],
-    correctAnswer: 0
-  },
-  {
-    question: "Finish this game title: 'Rock, paper, scissors, lizard, ______'",
-    choices: ["Kirk", "Piccard", "Spock", "Data"],
-    correctAnswer: 2
-  },
-  {
-    question: "What is Raj's middle name?",
-    choices: ["Naveen", "Amar", "Ramayan", "Neil"],
-    correctAnswer: 2
-  },
-  {
-    question: "Why does Sheldon sing 'Soft Kitty' to Penny in 'The Adhesive Duck Deficiency'?",
-    choices: ["Because she has the flu", "Because she dislocates her shoulder", "Because she's homesick", "Because she misses Leonard"],
-    correctAnswer: 1
-  },
-  {
-    question: "Which articles of clothing did Penny's ex-boyfriend take from Leonard and Sheldon when they try to retrieve her TV?",
-    choices: ["Their shirts", "Their pants", "Their underwear", "Their shoes"],
-    correctAnswer: 1
-  }];
+var pos = 0, test, test_status, question, choice, choices, chA, ChB, ChC, ChD, correct = 0;
 
-  var questionCounter = 0; //Tracks question number
-  var selections = []; //Array containing user choices
-  var quiz = $('#quiz'); //Quiz div object
-
-  // Display initial question
-  displayNext();
-
-  // Click handler for the 'next' button
-  $('#next').on('click', function (e) {
-    e.preventDefault();
-
-    // Suspend click listener during fade animation
-    if(quiz.is(':animated')) {
-      return false;
-    }
-    choose();
-
-    // If no user selection, progress is stopped
-    if (isNaN(selections[questionCounter])) {
-      alert('Please make a selection!');
-    } else {
-      questionCounter++;
-      displayNext();
-    }
-  });
-
-  // Click handler for the 'prev' button
-  $('#prev').on('click', function (e) {
-    e.preventDefault();
-
-    if(quiz.is(':animated')) {
-      return false;
-    }
-    choose();
-    questionCounter--;
-    displayNext();
-  });
-
-  // Click handler for the 'Start Over' button
-  $('#start').on('click', function (e) {
-    e.preventDefault();
-
-    if(quiz.is(':animated')) {
-      return false;
-    }
-    questionCounter = 0;
-    selections = [];
-    displayNext();
-    $('#start').hide();
-  });
-
-  // Animates buttons on hover
-  $('.button').on('mouseenter', function () {
-    $(this).addClass('active');
-  });
-  $('.button').on('mouseleave', function () {
-    $(this).removeClass('active');
-  });
-
-  // Creates and returns the div that contains the questions and
-  // the answer selections
-  function createQuestionElement(index) {
-    var qElement = $('<div>', {
-      id: 'question'
-    });
-
-    var header = $('<h2>Question ' + (index + 1) + ':</h2>');
-    qElement.append(header);
-
-    var question = $('<p>').append(questions[index].question);
-    qElement.append(question);
-
-    var radioButtons = createRadios(index);
-    qElement.append(radioButtons);
-
-    return qElement;
+var questions = [
+  ["What change sets Sheldon off the moment that he enters the apartment after returning from his 'life on the rails'?","Penny's new haircut","Raj's new girlfriend being there","The furniture has been rearranged","Bernadette sitting in his spot","A"],
+  ["Finish this game title: 'Rock, paper, scissors, lizard, ______'", "Kirk", "Piccard", "Spock", "Data", "C"],
+  ["What is Raj's middle name?", "Naveen", "Amar", "Ramayan", "Neil", "C"],
+  ["Why does Sheldon sing 'Soft Kitty' to Penny in 'The Adhesive Duck Deficiency'?", "Because she has the flu?", "Because she dislocates her shoulder?", "Because she's homesick?", "Because she misses Leonard?", "B"],
+  ["Which articles of clothing did Penny's ex-boyfriend take from Leonard and Sheldon when they try to retrieve her TV?", "Their shirts", "Their pants", "Their shoes",
+  "Their underwear", "B"],
+  ["What mistake does Howard make when he tries to impress Dr. Stephanie Barnett?", "He gets the Mars rover stuck in a ditch?", "He introduces her to his mother?", "He accidentally eats peanuts?", "He crashes his scooter?", "A"],
+  ["What major secret about Penny is revealed in 'The Thanksgiving Decoupling'?","That she's moving back to Nebraska","That she's breaking up with Leonard","That she's going to be in a movie with Jennifer Anniston","That she married Zack in Vegas 3 years ago","D"],
+  ["What are Penny, Amy, Sheldon, and Leonard in the middle of when Howard returns from space that causes them to yell, 'NOT NOW!' at him?", "Watching a horror movie", "A pie eating contest", "Packing for a camping trip", "The finale of 'Lost'", "B"],
+  ["What does Sheldon do when he meets Stephen Hawking and Dr. Hawking points out a mathematical error of Sheldon's?", "He tells Dr. Hawking that he's wrong", "He faints", "He puts Dr. Hawking on his mortal enemy list", "He cries", "B"],
+  ["What is Raj's signature drink?", "Strawberry Margaritas", "Moscow mules", "Grasshoppers", "Pina Coladas", "C"]
+];
+function _ (x) {
+  return document.getElementById(x);
+}
+function renderQuestion () {
+  test = _("test");
+  if (pos >= questions.length) {
+    test.innerHTML = "<h2>You scored "+correct+" of "+questions.length+" questions correct</h2>";
+    _("test_status").innerHTML = "Trivia Complete!";
+    pos = 0;
+    correct = 0;
+    return false;
   }
-
-  // Creates a list of the answer choices as radio inputs
-  function createRadios(index) {
-    var radioList = $('<ul>');
-    var item;
-    var input = '';
-    for (var i = 0; i < questions[index].choices.length; i++) {
-      item = $('<li>');
-      input = '<input type="radio" name="answer" value=' + i + ' />';
-      input += questions[index].choices[i];
-      item.append(input);
-      radioList.append(item);
-    }
-    return radioList;
-  }
-
-  // Reads the user selection and pushes the value to an array
-  function choose() {
-    selections[questionCounter] = +$('input[name="answer"]:checked').val();
-  }
-
-  // Displays next requested element
-  function displayNext() {
-    quiz.fadeOut(function() {
-      $('#question').remove();
-
-      if(questionCounter < questions.length){
-        var nextQuestion = createQuestionElement(questionCounter);
-        quiz.append(nextQuestion).fadeIn();
-        if (!(isNaN(selections[questionCounter]))) {
-          $('input[value='+selections[questionCounter]+']').prop('checked', true);
-        }
-
-        // Controls display of 'prev' button
-        if(questionCounter === 1){
-          $('#prev').show();
-        } else if(questionCounter === 0){
-
-          $('#prev').hide();
-          $('#next').show();
-        }
-      }else {
-        var scoreElem = displayScore();
-        quiz.append(scoreElem).fadeIn();
-        $('#next').hide();
-        $('#prev').hide();
-        $('#start').show();
-      }
-    });
-  }
-
-  // Computes score and returns a paragraph element to be displayed
-  function displayScore() {
-    var score = $('<p>',{id: 'question'});
-
-    var numCorrect = 0;
-    for (var i = 0; i < selections.length; i++) {
-      if (selections[i] === questions[i].correctAnswer) {
-        numCorrect++;
+  _("test_status").innerHTML = "Question " + (pos+1) + " of " + questions.length;
+  question = questions[pos][0];
+  chA = questions[pos][1];
+  chB = questions[pos][2];
+  chC = questions[pos][3];
+  chD = questions[pos][4];
+  test.innerHTML = "<h3>" + question + "</h3>";
+  test.innerHTML += "<input type='radio' name='choices' value='A'> " + chA + "<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='D'> " + chD + "<br><br>";
+  test.innerHTML += "<button onclick='checkAnswer()'>Submit</button>";
+}
+function checkAnswer(){
+  choices = document.getElementByName("choices");
+    for (var i = 0; i<choices.length; i++) {
+      if (choices[i].checked) {
+        choice = choices[i].value;
       }
     }
 
-    score.append('You got ' + numCorrect + ' questions out of ' +
-                 questions.length + ' right!!!');
-    return score;
-  }
-})();
+    if (choice == questions[pos][5]) {
+      correct++;
+    }
+    pos++;
+    renderQuestion();
+}
+window.addEventListener("load", renderQuestion, false);
