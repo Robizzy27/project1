@@ -1,4 +1,16 @@
 #test {
   border: black 1px solid;
-  padding: 10px 40px 40px 40px;
+  width: auto;
+  margin:auto;
+  padding: 0px 50px 50px 50px;
+  border:4px solid #B0E0E6;
+  border-radius:5px;
+  color: #FFFFFF;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px grey;
+  height: 450px;
+  background-color:  rgba(0,0,0,0.75);
+  position: relative;
+  background-image: url("BBTBackground.jpg");
+  background-repeat: no-repeat;
 }
