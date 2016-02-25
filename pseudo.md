@@ -71,88 +71,16 @@ Trivia Questions:
       D. Pina Coladas?
       (Answer) C
 
-  11. Who lends Penny money when she can't afford to pay her rent in "The Financial Permeability"?
-    A. Amy?
-    B. Sheldon?
-    C. Howard?
-    D. Leonard?
-    (Answer) B
+  ["Who lends Penny money when she can't afford to pay her rent in 'The Financial Permeability'?","Amy","Sheldon","Howard","Leonard","B"],  ["How does Penny accidentally ruin Sheldon's favorite couch spot in 'The Cushion Saturation'?", "She rips the cushion with a nail file",
+  "She throws up on the cushion after drinking too much", "She shoots the cushion with a paintball gun", "She spills nail polish on the cushion", "C"], ["What does Sheldon use as bait to positively reinforce better habits out of Penny?", "Wine", "Potato Chips", "Chocolate", "Money", "C"], ["What is the name of Penny's business portrayed in 'The Work Song Nano-cluster'?", "Penny Blossoms", "Penny's Treasures", "Penny's Pretties", "Designs by Penny", "A"], ["What is Stuart's self-proclaimed 'dream job' that he lands after the comic store burns down due to a "hot plate incident?", "Mrs. Wolowitz's caregiver", "Grooming Raj's dog Cinnamon, full-time", "Running his rival's comic book store", "Dressing up as 'Goofy' at Disneyland?", "A"], ["Where do Howard and Bernadette get married before Howard goes into space?", "A catholic church in Pasadena", "City Hall", "Vegas", "The roof of the guys' apartment building", "D"], ["What is Howard Allergic to?", "Shellfish", "Strawberries", "Nuts", "Eggs", "C"], ["Which superhero moniker does Leonard frequently use as his password?", "Kal-El", "Bruce Wayne", "Peter Parker", "Hal Jordan", "A"], ["Which of the following embarrassing things did Howard do on his blind date with Emily, Raj's girlfriend?", "Forget his wallet", "Call her by the wrong name all night", "Sneeze when he tried to kiss her", "Clog her apartment toilet", "D"], ["In Season 3, after Penny and Leonard break up, what dinner does Penny make Sheldon that reminds him of his mother?", "Grilled Cheese and Tomato soup", "Spaghettios", "Mac 'N Cheese", "Spaghetti with cut up hot dogs", "D"]
 
-  12. How does Penny accidentally ruin Sheldon's favorite couch spot in "The Cushion Saturation"?
-    A. She rips the cushion with a nail file?
-    B. She throws up on the cushion after drinking too much?
-    C. She shoots the cushion with a paintball gun?
-    D. She spills nail polish on the cushion?
-    (Answer) C
 
-  13. What does Sheldon use as bait to positively reinforce better habits out of Penny?
-    A. Wine?
-    B. Potato Chips?
-    C. Chocolate?
-    D. Money?
-    (Answer) C
-
-  14. What is the name of Penny's business portrayed in "The Work Song Nano-cluster"?
-    A. Penny Blossoms?
-    B. Penny's Treasures?
-    C. Penny's Pretties?
-    D. Designs by Penny?
-    (Answer) A
-
-  15. What is Stuart's self-proclaimed "dream job" that he lands after the comic store burns down due to a "hot plate incident"?
-    A. Mrs. Wolowitz's caregiver?
-    B. Grooming Raj's dog, Cinnamon, full-time?
-    C. Running his rival's comic book store?
-    D. Dressing up as "Goofy" at Disneyland?
-    (Answer) A
-
-  16. Where do Howard and Bernadette get married before Howard goes into space?
-    A. A catholic church in Pasadena?
-    B. City Hall?
-    C. Vegas?
-    D. The roof of the guys' apartment building?
-    (Answer) D
-
-  17. What is Howard Allergic to?
-    A. Shellfish?
-    B. Strawberries?
-    C. Nuts
-    D. Eggs?
-    (Answer) C
-
-  18. Which superhero moniker does Leonard frequently use as his password?
-    A. Kal-El?
-    B. Bruce Wayne?
-    C. Peter Parker?
-    D. Hal Jordan?
-    (Answer) A
-
-  19. Which of the following embarrassing things did Howard do on his blind date with Emily, Raj's girlfriend?
-    A. Forget his wallet?
-    B. Call her by the wrong name all night?
-    C. Sneeze when he tried to kiss her?
-    D. Clog her apartment toilet?
-    (Answer) D
-
-  20. In Season 3, after Penny and Leonard break up, what dinner does Penny make Sheldon that reminds him of his mother?
-    A. Grilled Cheese and Tomato soup?
-    B. Spaghettios?
-    C. Mac 'N Cheese?
-    D. Spaghetti with cut up hot dogs?
-    (Answer) D
-
-  21. Who said it: "From the waist down, my shields are up."
-    A. Sheldon
-    B. Wolowitz
-    C. Penny
-    D. Bernadette
-    (Answer) C
 
 Pseudocode
 
 Upon loading the website, the user will see the start button to begin the game.
 
-Upon clicking on 'start', the first question will load.
+Upon clicking on 'start', the first question will load. questions will be stored in an array where they can be loaded as the user progresses thru the trivia.
 
 each answer is stored and a count is kept. of the 20 or so questions cycled thru, the user is then told how many they got correct.
 
@@ -164,7 +92,8 @@ the user can now start again.
 Gold version will have a fully functional trivia game that loads a giff depending on wether the user answered correctly or not. There would be a few giffs for each so it won't appear repetitive. There would be additional animation when questions load and answers are selected.
 
 //Silver Version
-Silver version would have a fully functional trivia game that stores the users running scores.
+Silver version would have a fully functional trivia game that stores the users running scores. It'll have background images and look presentable.
 
 
 //Bronze Version
+Bronze version loads the site and can load the questions on the screen. It'll be all white with just the text loading. trivia questions will all load at the same time.

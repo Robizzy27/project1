@@ -4,10 +4,10 @@
   padding: 0px 50px 50px 50px;
   border:1px solid #B0E0E6;
   border-radius:15px;
-  color: #4b4747;
+  color: #595353;
   font-weight: bold;
   height: 175px;
-  background-color: rgba(255,255,255,0.90);
+  background-color: rgba(255,255,255,0.85);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -19,7 +19,7 @@
   padding: 0px 50px 50px 50px;
   border:4px solid #B0E0E6;
   border-radius:15px;
-  color: #FFFFFF;
+  color: #595353;
   font-weight: bolder;
   box-shadow: 5px 5px 5px #888;
   height: 450px;
@@ -33,4 +33,14 @@
    font-weight: bolder;
    font-style: oblique;
    font-size: 25px;
+   color: #595353;
+ }
+
+ #trivia_status {
+   text-align: left;
+   font-size: 20px;
+ }
+
+ #trivia {
+   font-weight: bold;
  }
