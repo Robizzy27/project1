@@ -1,4 +1,4 @@
-var pos = 0, test, test_status, question, choice, choices, chA, ChB, ChC, ChD, correct = 0;
+var pos = 0, trivia, trivia_status, question, choice, choices, A, B, C, D, correct = 0;
 
 var questions = [
   ["What change sets Sheldon off the moment that he enters the apartment after returning from his 'life on the rails'?","Penny's new haircut","Raj's new girlfriend being there","The furniture has been rearranged","Bernadette sitting in his spot","A"],
@@ -13,31 +13,35 @@ var questions = [
   ["What does Sheldon do when he meets Stephen Hawking and Dr. Hawking points out a mathematical error of Sheldon's?", "He tells Dr. Hawking that he's wrong", "He faints", "He puts Dr. Hawking on his mortal enemy list", "He cries", "B"],
   ["What is Raj's signature drink?", "Strawberry Margaritas", "Moscow mules", "Grasshoppers", "Pina Coladas", "C"]
 ];
-function _ (x) {
+
+function quiz (x) {
   return document.getElementById(x);
 }
+
 function renderQuestion () {
-  test = _("test");
+  trivia = quiz("trivia");
   if (pos >= questions.length) {
-    test.innerHTML = "<h2>You scored "+correct+" of "+questions.length+" questions correct</h2>";
-    _("test_status").innerHTML = "Trivia Complete!";
+    trivia.innerHTML = "<h2>You scored "+correct+" of "+questions.length+" questions correct</h2>";
+    quiz("trivia_status").innerHTML = "Trivia Complete!";
     pos = 0;
     correct = 0;
     return false;
   }
-  _("test_status").innerHTML = "Question " + (pos+1) + " of " + questions.length;
+
+  quiz("trivia_status").innerHTML = "Question " + (pos+1) + " of " + questions.length;
   question = questions[pos][0];
-  chA = questions[pos][1];
-  chB = questions[pos][2];
-  chC = questions[pos][3];
-  chD = questions[pos][4];
-  test.innerHTML = "<h3>" + question + "</h3>";
-  test.innerHTML += "<input type='radio' name='choices' value='A'> " + chA + "<br>";
-  test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
-  test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br>";
-  test.innerHTML += "<input type='radio' name='choices' value='D'> " + chD + "<br><br>";
-  test.innerHTML += "<button onclick='checkAnswer()'>Submit</button>";
+  A = questions[pos][1];
+  B = questions[pos][2];
+  C = questions[pos][3];
+  D = questions[pos][4];
+  trivia.innerHTML = "<h3>" + question + "</h3>";
+  trivia.innerHTML += "<input type='radio' name='choices' value='A'> " + A + "<br>";
+  trivia.innerHTML += "<input type='radio' name='choices' value='B'> " + B + "<br>";
+  trivia.innerHTML += "<input type='radio' name='choices' value='C'> " + C + "<br>";
+  trivia.innerHTML += "<input type='radio' name='choices' value='D'> " + D + "<br><br>";
+  trivia.innerHTML += "<button onclick='checkAnswer()'>Submit</button>";
 }
+
 function checkAnswer(){
   choices = document.getElementsByName("choices");
     for (var i = 0; i<choices.length; i++) {
@@ -52,4 +56,5 @@ function checkAnswer(){
     pos++;
     renderQuestion();
 }
+
 window.addEventListener("load", renderQuestion, false);

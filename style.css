@@ -1,4 +1,4 @@
-#test {
+#trivia {
   width:55%;
   margin: auto;
   padding: 0px 50px 50px 50px;
@@ -26,4 +26,11 @@
   background-image: url("BBTBackground.jpg");
   background-repeat: no-repeat;
   position: relative;
+ }
+
+ #header {
+   text-align: center;
+   font-weight: bolder;
+   font-style: oblique;
+   font-size: 25px;
  }
