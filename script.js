@@ -52,6 +52,10 @@ function checkAnswer(){
 
     if (choice == questions[pos][5]) {
       correct++;
+      alert("Correct! Clearly you're a fellow braniac.");
+    }
+    else {
+      alert("Incorrect! If only you could see my look of haughty derision.");
     }
     pos++;
     renderQuestion();
