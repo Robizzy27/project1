@@ -1,3 +1,4 @@
+// NHO: how could we avoid using global variables?
 var pos = 0, trivia, trivia_status, question, choice, choices, A, B, C, D, correct = 0;
 //Questions, multiple choice options A thru D, and correct answers for all trivia questions.
 var questions = [
@@ -22,12 +23,17 @@ var questions = [
   ["Which of the following embarrassing things did Howard do on his blind date with Emily, Raj's girlfriend?", "Forget his wallet", "Call her by the wrong name all night", "Sneeze when he tried to kiss her", "Clog her apartment toilet", "D"],
   ["In Season 3, after Penny and Leonard break up, what dinner does Penny make Sheldon that reminds him of his mother?", "Grilled Cheese and Tomato soup", "Spaghettios", "Mac 'N Cheese", "Spaghetti with cut up hot dogs", "D"]
 ];
+// NHO: like how you arranged all the questions in an array to allow dynamic iteration over when `renderingQuestions`
+// Do you think it would make sense to have an array of `question` objects to allow for more flexibility in the future?
 
 function quiz (x) {
+  // NHO: what would be a more semantic parameter?
   return document.getElementById(x);
 }
+
 //initiates renderQuestion function. Once the question position has reached the end, it scores the game and displays users score.
 function renderQuestion () {
+  // NHO: this function seems to be doing a lot, how could we break this up into smaller functions?
   trivia = quiz("trivia");
   if (pos >= questions.length) {
     trivia.innerHTML = "<h2>You scored "+correct+" of "+questions.length+" questions correct</h2>";
@@ -35,14 +41,19 @@ function renderQuestion () {
     pos = 0;
     correct = 0;
     return false;
+    // NHO: The above block of code looks like a `checkGameStatus` function...
   }
 
+
   quiz("trivia_status").innerHTML = "Question " + (pos+1) + " of " + questions.length;
+  // NHO: code comments would be nice here
   question = questions[pos][0];
   A = questions[pos][1];
   B = questions[pos][2];
   C = questions[pos][3];
   D = questions[pos][4];
+
+  // NHO: Could break this into a smaller `template` function which takes a question object as an argument and returns the necessary html
   trivia.innerHTML = "<h3>" + question + "</h3>";
   trivia.innerHTML += "<input type='radio' name='choices' value='A'> " + A + "<br>";
   trivia.innerHTML += "<input type='radio' name='choices' value='B'> " + B + "<br>";
@@ -50,10 +61,12 @@ function renderQuestion () {
   trivia.innerHTML += "<input type='radio' name='choices' value='D'> " + D + "<br><br>";
   trivia.innerHTML += "<button onclick='checkAnswer()'>Submit</button>";
 }
+
 //checkAnswer function calls up the users selections stored in choices and compares them to correct answer value stored in position 5 of each question. It then alerts the user with a correct or incorrect remark before rendering the next question.
+// NHO: great code comment!
 function checkAnswer(){
   choices = document.getElementsByName("choices");
-    for (var i = 0; i<choices.length; i++) {
+    for (var i = 0; i < choices.length; i++) {
       if (choices[i].checked) {
         choice = choices[i].value;
       }
@@ -71,3 +84,11 @@ function checkAnswer(){
 }
 
 window.addEventListener("load", renderQuestion, false);
+
+// NHO: Overall, nice job on this project!
+//
+// Things to focus on in the future:
+//   avoid global variables where possible
+//   use input and output with functions to avoid accessing variables outside local scope
+//   breaking up code into smaller chunks
+//   object-oriented approach
